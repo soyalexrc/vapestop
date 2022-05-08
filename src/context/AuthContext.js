@@ -12,6 +12,7 @@ export function AuthProvider({ children }) {
   const handleLogin = async (data) => {
     console.log(data);
     await sleep(2000);
+    console.log('i am here!');
     await setToken('some token');
     const origin = location.state?.from?.pathname || '/';
     navigate(origin);
@@ -32,5 +33,5 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
