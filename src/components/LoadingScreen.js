@@ -1,14 +1,13 @@
 import NProgress from 'nprogress';
 import { useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
 // material
-import { alpha, styled, useTheme } from '@mui/material/styles';
-import { Box, GlobalStyles } from '@mui/material';
+import { styled} from '@mui/material/styles';
+import {GlobalStyles } from '@mui/material';
 //
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled('div')(({ theme }) => ({
+const RootStyle = styled('div')(() => ({
   height: '100%',
   display: 'flex',
   alignItems: 'center',
