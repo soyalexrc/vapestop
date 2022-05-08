@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Router from './routes'
+import ThemeConfig from './theme'
+import GlobalStyles from "./theme/globalStyles";
+import {ProgressBarStyle} from "./components/LoadingScreen";
+import ScrollToTop from "./hooks/ScrollToTop";
+import {AuthProvider} from './context/AuthContext'
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeConfig>
+      <GlobalStyles />
+      <ProgressBarStyle />
+      <ScrollToTop />
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
+    </ThemeConfig>
   );
 }
 
