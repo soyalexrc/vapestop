@@ -1,7 +1,7 @@
 import useAuth from "../hooks/useAuth";
 
 export default function Home() {
-  const { token, login, logout } = useAuth()
+  const { token, logout } = useAuth()
   return (
     <div>
       this is home
