@@ -9,23 +9,29 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const location = useLocation();
 
-  const handleLogin = async (data) => {
-    console.log(data);
+  const handleLogin = async () => {
     await sleep(2000);
-    console.log('i am here!');
     await setToken('some token');
+    localStorage.token = token;
     const origin = location.state?.from?.pathname || '/';
     navigate(origin);
   };
 
   const handleLogout = () => {
     setToken(null);
+    localStorage.removeItem('token');
+    navigate('/');
   };
+
+  const getToken = () => {
+    return localStorage.token;
+  }
 
   const value = {
     token,
     login: handleLogin,
     logout: handleLogout,
+    getToken: getToken,
   };
 
   return (

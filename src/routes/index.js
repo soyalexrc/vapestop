@@ -41,13 +41,13 @@ export default function Router() {
     },
     {
       path: '/',
-      element: <MainLayout/>,
+      element: (
+        <ProtectedRoute>
+          <MainLayout/>
+        </ProtectedRoute>
+      ),
       children: [
-        {path: '', element: (
-            <ProtectedRoute>
-              <Home/>
-            </ProtectedRoute>
-          )},
+        {path: '', element: <Home/>},
         {path: 'perfil', element: <Profile/>},
         {path: 'usuarios', element: <UsersList/>},
         {path: 'usuarios/registrar', element: <UserRegister/>},

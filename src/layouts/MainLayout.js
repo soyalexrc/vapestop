@@ -18,6 +18,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import {Outlet} from 'react-router-dom';
 import MenuItems from "./MenuItems";
+import useAuth from "../hooks/useAuth";
 
 const drawerWidth = 240;
 
@@ -128,6 +129,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 
 
 export default function Sidebar() {
+  const { logout } = useAuth()
   const [anchorEl, setAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -139,13 +141,16 @@ export default function Sidebar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
-  // const theme = useTheme();
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
+
+  const handleLogout = () => {
+    logout();
+  }
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -164,8 +169,8 @@ export default function Sidebar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Mi cuenta</MenuItem>
+      <MenuItem onClick={handleLogout}>Cerrar sesion</MenuItem>
     </Menu>
   );
 

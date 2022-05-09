@@ -14,7 +14,7 @@ export default function Login() {
       email: '',
       password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async () => {
       setLoading(true);
       await sleep(2000);
       await login()
@@ -23,7 +23,7 @@ export default function Login() {
   });
 
   return (
-    <form action="" onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <Grid container sx={{height: '100%', px: 5}}>
         <Grid item xs={6}>
           <Box
