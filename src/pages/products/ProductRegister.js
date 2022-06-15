@@ -13,15 +13,12 @@ import {PhotoCamera} from "@mui/icons-material";
 import CarouselBasic3 from "../../components/carousel/CarouselBasic3";
 import image from '../../assets/img/sample-product.jpg'
 import Divider from "@mui/material/Divider";
-import useReorderBanners from "../../hooks/api/useReorder";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 
 const sampleImages = [
-  {url: image, _id: 1},
-  {url: image, _id: 2},
-  {url: image, _id: 3},
-  {url: image, _id: 4},
-
+  {url: image, _id: 'elemento1', order: 1, idImage: 'imagen1'},
+  {url: image, _id: 'elemento2', order: 2, idImage: 'imagen2'},
+  {url: image, _id: 'elemento3', order: 3, idImage: 'imagen3'},
 ]
 
 const getListStyle = isDraggingOver => ({
@@ -57,8 +54,6 @@ export default function ProductRegister() {
     sucursalTwo: ''
   })
 
-  const { errorReorder, onDragEnd, reorderLoading } = useReorderBanners(() => console.log('se ejecuto la transicion!', sampleImages));
-
   function changeProductData(type, value) {
     setProductData(prevState => ({
       ...prevState,
@@ -66,6 +61,31 @@ export default function ProductRegister() {
     }))
   }
 
+  // const reorder = (list, startIndex, endIndex) => {
+  //   const result = Array.from(list);
+  //   const [removed] = result.splice(startIndex, 1);
+  //   result.splice(endIndex, 0, removed);
+  //   return result.map((multi, i) => ({idImage: multi._id, order: i + 1}))
+  // };
+
+
+  async function onDragEnd(result) {
+    const {destination, source} = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    // const newArr = reorder(arr, source.index, destination.index);
+    console.log('newArray', result);
+    // await updateOrderBanners(newArr)
+  }
 
   return (
     <Container>
@@ -80,16 +100,43 @@ export default function ProductRegister() {
                 <Droppable droppableId='productImagesDroppableId' direction='horizontal'>
                   {(provided, snapshot) => (
                     <Box
-                      sx={{ overflowX: 'scroll' }}
+                      sx={{ overflowX: 'scroll', width: '100%' }}
                       style={getListStyle(snapshot.isDraggingOver)}
                       {...provided.droppableProps}
                       ref={provided.innerRef}
                     >
-                      {sampleImages.map((el, i) => (
-                        <Draggable draggableId={el._id}>
-
-                        </Draggable>
-                        )}
+                      {
+                        sampleImages.map((el, i) => (
+                          <Draggable key={el._id} draggableId={el._id} index={i}>
+                            {(provided, snapshot) => (
+                              <Box
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.draggableProps.style
+                                )}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
+                              >
+                                <Box sx={{
+                                  width:'110px',
+                                  mr: 2,
+                                  p: 2,
+                                  cursor: 'grabbing',
+                                  border: '1px solid transparent',
+                                  borderRadius: '15px',
+                                  ["&:hover"]: {
+                                    borderColor: 'lightgray'
+                                  }
+                                }}>
+                                  <img src={el.url}  alt=""/>
+                                </Box>
+                              </Box>
+                            )}
+                          </Draggable>
+                        ))
+                      }
+                      {provided.placeholder}
                     </Box>
                   )}
                 </Droppable>
