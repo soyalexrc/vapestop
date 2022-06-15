@@ -68,10 +68,10 @@ export default function Router() {
 
 const Home = Loadable(lazy(() => import('../pages/Home')))
 const Profile = Loadable(lazy(() => import('../pages/Profile')))
-const UsersList = Loadable(lazy(() => import('../pages/UsersList')))
-const UserRegister = Loadable(lazy(() => import('../pages/UserRegister')))
-const ProductRegister = Loadable(lazy(() => import('../pages/ProductRegister')))
-const ProductsList = Loadable(lazy(() => import('../pages/ProductsList')))
+const UsersList = Loadable(lazy(() => import('../pages/users/UsersList')))
+const UserRegister = Loadable(lazy(() => import('../pages/users/UserRegister')))
+const ProductRegister = Loadable(lazy(() => import('../pages/products/ProductRegister')))
+const ProductsList = Loadable(lazy(() => import('../pages/products/ProductsList')))
 
 //auth
 const Login = Loadable(lazy(() => import('../pages/auth/Login')))

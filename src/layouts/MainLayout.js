@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {alpha, styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
+import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -19,6 +19,7 @@ import MenuItem from "@mui/material/MenuItem";
 import {Outlet} from 'react-router-dom';
 import MenuItems from "./MenuItems";
 import useAuth from "../hooks/useAuth";
+import {MHidden} from "../components/@material-extend";
 
 const drawerWidth = 240;
 
@@ -62,74 +63,35 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
   },
 }));
 
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: 'hidden',
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const DrawerHeader = styled('div')(({theme}) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({theme, open}) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
-  ({theme, open}) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
-  }),
-);
+const DrawerHeader = styled('div')(({theme}) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
 
 
 export default function Sidebar() {
-  const { logout } = useAuth()
+  const {logout} = useAuth()
   const [anchorEl, setAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -143,7 +105,7 @@ export default function Sidebar() {
   };
   const [open, setOpen] = useState(true);
 
-  const handleDrawerOpen = () => {
+  const handleDrawerChange = () => {
     setOpen(!open);
   };
 
@@ -179,7 +141,7 @@ export default function Sidebar() {
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
-            onClick={handleDrawerOpen}
+            onClick={handleDrawerChange}
             size="large"
             edge="start"
             color="inherit"
@@ -228,17 +190,55 @@ export default function Sidebar() {
           {renderMenu}
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{ justifyContent: 'center' }}>
-          {/*<IconButton onClick={handleDrawerClose}>*/}
-          {/*  {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}*/}
-          {/*</IconButton>*/}
-          <Typography variant='h5' align='center'>Administracion</Typography>
-        </DrawerHeader>
-        <Divider/>
-        <MenuItems open={open} />
-      </Drawer>
-      <Box component="main" sx={{flexGrow: 1, p: 3}}>
+      <MHidden width='mdDown'>
+        <Drawer
+          variant="persistent"
+          open={open}
+          sx={{
+            width: open ? drawerWidth : 0,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              backgroundColor: '#222e3c',
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}>
+          <DrawerHeader sx={{justifyContent: 'center'}}>
+            {/*<IconButton onClick={handleDrawerClose}>*/}
+            {/*  {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}*/}
+            {/*</IconButton>*/}
+            <Typography variant='h5' align='center' color='#fff'>Administracion</Typography>
+          </DrawerHeader>
+          <Divider/>
+          <MenuItems open={open}/>
+        </Drawer>
+      </MHidden>
+      <MHidden width='mdUp'>
+        <Drawer
+          variant="temporary"
+          ModalProps={{keepMounted: true}}
+          onClose={handleDrawerChange}
+          open={open}
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              backgroundColor: '#222e3c',
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}>
+          <DrawerHeader sx={{justifyContent: 'center'}}>
+            {/*<IconButton onClick={handleDrawerClose}>*/}
+            {/*  {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}*/}
+            {/*</IconButton>*/}
+            <Typography variant='h5' align='center' color='#fff'>Administracion</Typography>
+          </DrawerHeader>
+          <Divider/>
+          <MenuItems/>
+        </Drawer>
+      </MHidden>
+      <Box component="main" sx={{p: 3, width: '100%', flexGrow: 1}}>
         <DrawerHeader/>
         <Outlet/>
       </Box>
