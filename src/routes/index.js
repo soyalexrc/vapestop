@@ -51,8 +51,8 @@ export default function Router() {
         {path: 'perfil', element: <Profile/>},
         {path: 'usuarios', element: <UsersList/>},
         {path: 'usuarios/registrar', element: <UserRegister/>},
-        {path: 'productos', element: <ProductRegister/>},
-        {path: 'productos/registrar', element: <ProductsList/>},
+        {path: 'productos', element: <ProductsList/>},
+        {path: 'productos/registrar', element: <ProductRegister/>},
       ]
     },
     {
