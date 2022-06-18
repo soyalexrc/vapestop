@@ -8,7 +8,7 @@ import { Outlet }  from 'react-router-dom';
 export default function LogoOnlyLayout() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{   backgroundColor: '#222e3c'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Vapestop

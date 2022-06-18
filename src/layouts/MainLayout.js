@@ -138,7 +138,7 @@ export default function Sidebar() {
 
   return (
     <Box sx={{display: 'flex'}}>
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{   backgroundColor: '#222e3c'}}>
         <Toolbar>
           <IconButton
             onClick={handleDrawerChange}
