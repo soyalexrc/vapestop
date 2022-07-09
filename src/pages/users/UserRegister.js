@@ -19,6 +19,7 @@ import {styled} from "@mui/material/styles";
 import exampleImage from '../../assets/img/rufacode-logo.jpg';
 import Divider from "@mui/material/Divider";
 import moment from 'moment';
+import { mockOptions } from '../../utils/mockData';
 
 const Input = styled('input')({
   display: 'none',
@@ -111,9 +112,10 @@ export default function UserRegister() {
                 <Typography>Pais</Typography>
                 <Autocomplete
                   value={userData.country}
-                  onChange={e => changeUserData('country', e.target.value)}
+                  getOptionLabel={(option) => option}
+                  onChange={(event, newValue) =>  changeUserData('country', newValue)}
+                  options={mockOptions}
                   id='pais-autocomplete'
-                  options={['venezuela', '...']}
                   renderInput={(params) => <TextField {...params} size='small' placeholder='Pais'/>}
                 />
               </Grid>
@@ -121,9 +123,10 @@ export default function UserRegister() {
                 <Typography>Estado</Typography>
                 <Autocomplete
                   value={userData.state}
-                  onChange={e => changeUserData('state', e.target.value)}
+                  getOptionLabel={(option) => option}
+                  onChange={(event, newValue) =>  changeUserData('state', newValue)}
+                  options={mockOptions}
                   id='pais-autocomplete'
-                  options={['Carabobo', '...']}
                   renderInput={(params) => <TextField {...params} size='small' placeholder='Estado'/>}
                 />
               </Grid>
@@ -131,9 +134,10 @@ export default function UserRegister() {
                 <Typography>Municipio</Typography>
                 <Autocomplete
                   value={userData.municipality}
-                  onChange={e => changeUserData('municipality', e.target.value)}
+                  getOptionLabel={(option) => option}
+                  onChange={(event, newValue) =>  changeUserData('municipality', newValue)}
+                  options={mockOptions}
                   id='pais-autocomplete'
-                  options={['Valencia', '...']}
                   renderInput={(params) => <TextField {...params} size='small' placeholder='Municipio'/>}
                 />
               </Grid>
@@ -141,9 +145,10 @@ export default function UserRegister() {
                 <Typography>Zona</Typography>
                 <Autocomplete
                   value={userData.zone}
-                  onChange={e => changeUserData('zone', e.target.value)}
+                  getOptionLabel={(option) => option}
+                  onChange={(event, newValue) =>  changeUserData('zone', newValue)}
+                  options={mockOptions}
                   id='pais-autocomplete'
-                  options={['Prebo', '...']}
                   renderInput={(params) => <TextField {...params} size='small' placeholder='Zona'/>}
                 />
               </Grid>
@@ -182,11 +187,12 @@ export default function UserRegister() {
               <Typography sx={{pl: 4, flex: 0.2}}>Sucursal:</Typography>
               <Autocomplete
                 value={userData.sucursal}
-                onChange={e => changeUserData('sucursal', e.target.value)}
+                getOptionLabel={(option) => option}
+                onChange={(event, newValue) =>  changeUserData('sucursal', newValue)}
                 sx={{ flex: 0.8 }}
-                id='pais-autocomplete'
-                options={['sucursal 1', '...']}
-                renderInput={(params) => <TextField {...params} size='small' placeholder='Sucursal'/>}
+                id='sucursal-autocomplete'
+                options={mockOptions}
+                renderInput={(params) => <TextField {...params} size='small' label='Sucursal'/>}
               />
             </Box>
 
@@ -194,11 +200,12 @@ export default function UserRegister() {
               <Typography sx={{pl: 4, flex: 0.2}}>Tipo de usuario:</Typography>
               <Autocomplete
                 value={userData.userType}
-                onChange={e => changeUserData('userType', e.target.value)}
+                getOptionLabel={(option) => option}
+                onChange={(event, newValue) =>  changeUserData('userType', newValue)}
                 sx={{ flex: 0.8 }}
                 id='pais-autocomplete'
-                options={['Usuario 1', '...']}
-                renderInput={(params) => <TextField {...params} size='small' placeholder='Usuario'/>}
+                options={mockOptions}
+                renderInput={(params) => <TextField {...params} size='small' label='Usuario'/>}
               />
             </Box>
             <Button variant='contained' sx={{ mt: 4 }} fullWidth>Registrar</Button>

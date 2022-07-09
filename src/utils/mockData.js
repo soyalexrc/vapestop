@@ -116,3 +116,10 @@ export const mockProductTable = {
   ]
 }
 
+export const mockOptions = [
+  'Option 1',
+  'Option 2',
+  'Option 3',
+  'Option 4',
+]
+
