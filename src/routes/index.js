@@ -53,6 +53,7 @@ export default function Router() {
         {path: 'usuarios/registrar', element: <UserRegister/>},
         {path: 'productos', element: <ProductsList/>},
         {path: 'productos/registrar', element: <ProductRegister/>},
+        {path: 'ventas', element: <Sales/>},
       ]
     },
     {
@@ -72,6 +73,7 @@ const UsersList = Loadable(lazy(() => import('../pages/users/UsersList')))
 const UserRegister = Loadable(lazy(() => import('../pages/users/UserRegister')))
 const ProductRegister = Loadable(lazy(() => import('../pages/products/ProductRegister')))
 const ProductsList = Loadable(lazy(() => import('../pages/products/ProductsList')))
+const Sales = Loadable(lazy(() => import('../pages/sales/SalesDashboard')))
 
 //auth
 const Login = Loadable(lazy(() => import('../pages/auth/Login')))

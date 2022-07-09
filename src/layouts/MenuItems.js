@@ -5,11 +5,13 @@ import {useState} from 'react';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import PaidIcon from '@mui/icons-material/Paid';
 
 export default function MenuItems() {
   const navigate = useNavigate()
   const [usersCollapse, setUsersCollapse] = useState(false);
   const [productsCollapse, setProductsCollapse] = useState(false);
+  const [salesCollapse, setSalesCollapse] = useState(false);
 
   const goTo = (path) => {
     return navigate(path)
@@ -143,6 +145,50 @@ export default function MenuItems() {
                   <ArrowRightAltIcon style={{ color: 'white' }} />
                 </ListItemIcon>
                 <ListItemText primary='Registrar Producto' />
+              </ListItemButton>
+          </List>
+        </Collapse>
+        <ListItemButton
+          onClick={() => setSalesCollapse(!salesCollapse)}
+          sx={{
+            minHeight: 48,
+            justifyContent: 'initial',
+            px: 2.5,
+          }}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: 'center',
+            }}
+          >
+            <PaidIcon style={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText primary='Ventas' />
+          {salesCollapse ? <ExpandLess/> : <ExpandMore/>}
+        </ListItemButton>
+        <Collapse in={salesCollapse} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+              <ListItemButton
+                onClick={() => goTo('/ventas')}
+                sx={{
+                  minHeight: 48,
+                  justifyContent: 'initial',
+                  px: 2.5,
+                  pl: '2rem'
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: 3,
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ArrowRightAltIcon  style={{ color: 'white' }} />
+                </ListItemIcon>
+                <ListItemText primary='Resumen de ventas' />
               </ListItemButton>
           </List>
         </Collapse>
