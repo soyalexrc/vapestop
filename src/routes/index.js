@@ -49,8 +49,9 @@ export default function Router() {
       children: [
         {path: '', element: <Home/>},
         {path: 'perfil', element: <Profile/>},
-        {path: 'usuarios', element: <UsersList/>},
-        {path: 'usuarios/registrar', element: <UserRegister/>},
+        {path: 'clientes', element: <Customers/>},
+        {path: 'clientes/registrar', element: <CustomerRegister/>},
+        {path: 'clientes/:id', element: <CustomerRegister/>},
         {path: 'productos', element: <ProductsList/>},
         {path: 'productos/registrar', element: <ProductRegister/>},
         {path: 'ventas', element: <Sales/>},
@@ -69,8 +70,8 @@ export default function Router() {
 
 const Home = Loadable(lazy(() => import('../pages/Home')))
 const Profile = Loadable(lazy(() => import('../pages/Profile')))
-const UsersList = Loadable(lazy(() => import('../pages/users/UsersList')))
-const UserRegister = Loadable(lazy(() => import('../pages/users/UserRegister')))
+const Customers = Loadable(lazy(() => import('../pages/customers/Customers')))
+const CustomerRegister = Loadable(lazy(() => import('../pages/customers/CustomerRegister')))
 const ProductRegister = Loadable(lazy(() => import('../pages/products/ProductRegister')))
 const ProductsList = Loadable(lazy(() => import('../pages/products/ProductsList')))
 const Sales = Loadable(lazy(() => import('../pages/sales/SalesDashboard')))

@@ -1,199 +1,112 @@
 import {Collapse, Divider, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import {useNavigate} from 'react-router-dom'
-import PersonIcon from '@mui/icons-material/Person';
 import {useState} from 'react';
-import {ExpandLess, ExpandMore} from "@mui/icons-material";
-import InventoryIcon from '@mui/icons-material/Inventory';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import PaidIcon from '@mui/icons-material/Paid';
+import PersonIcon from '@mui/icons-material/Person';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
+import BuildIcon from '@mui/icons-material/Build';
+import BadgeIcon from '@mui/icons-material/Badge';
+
+const data = [
+  {
+    title: 'Productos',
+    path: '/productos',
+    value: 'productos',
+    icon: <AttachMoneyIcon style={{ color: 'white' }} />,
+    id: 2,
+  },
+  {
+    title: 'Catalogo online',
+    path: '/catalogo',
+    icon: <ShoppingCartIcon style={{ color: 'white' }} />,
+    value: 'catalogo',
+    id: 5,
+  },
+  {
+    title: 'Pedidos',
+    path: '/pedidos',
+    icon: <ReceiptLongIcon style={{ color: 'white' }} />,
+    value: 'pedidos',
+    id: 4,
+  },
+  {
+    title: 'Transacciones',
+    path: '/transacciones',
+    icon: <WidgetsIcon style={{ color: 'white' }} />,
+    value: 'transacciones',
+    id: 3,
+  },
+  {
+    title: 'Clientes',
+    path: '/clientes',
+    value: 'clientes',
+    icon: <PersonIcon style={{ color: 'white' }} />,
+    id: 1,
+  },
+  // {
+  //   title: 'Usuarios',
+  //   path: '/usuarios',
+  //   value: 'usuarios',
+  //   icon: <BadgeIcon style={{ color: 'white' }} />,
+  //   id: 10,
+  // },
+  {
+    title: 'Estadisticas',
+    path: '/estadisticas',
+    icon: <SignalCellularAltIcon style={{ color: 'white' }} />,
+    value: 'estadisticas',
+    id: 6,
+  },
+  {
+    title: 'Configuracion',
+    path: '/configuracion',
+    icon: <BuildIcon style={{ color: 'white' }} />,
+    value: 'configuracion',
+    id: 7,
+  },
+];
 
 export default function MenuItems() {
+  const [selected, setSelected] = useState('');
   const navigate = useNavigate()
-  const [usersCollapse, setUsersCollapse] = useState(false);
-  const [productsCollapse, setProductsCollapse] = useState(false);
-  const [salesCollapse, setSalesCollapse] = useState(false);
-
   const goTo = (path) => {
-    return navigate(path)
+    setSelected(path.replace('/', ''));
+    navigate(path)
   }
 
   return (
-    <>
-      <List sx={{ color: 'white' }}>
-        <ListItemButton
-          onClick={() => setUsersCollapse(!usersCollapse)}
-          sx={{
-            minHeight: 48,
-            justifyContent: 'initial',
-            px: 2.5,
-          }}
-        >
-          <ListItemIcon
+    <List sx={{color: 'white'}}>
+      {
+        data.map((route, index) => (
+          <ListItemButton
+            onClick={() => goTo(route.path)}
             sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: 'center',
+              minHeight: 48,
+              justifyContent: 'initial',
+              backgroundColor: selected === route.value && 'rgba(255,255,255, 0.1)',
+              "&:hover": {
+                backgroundColor: 'rgba(255,255,255, 0.1)',
+              },
+              px: 2.5,
             }}
           >
-            <PersonIcon style={{ color: 'white' }}/>
-          </ListItemIcon>
-          <ListItemText primary='Usuarios' />
-          {usersCollapse ? <ExpandLess/> : <ExpandMore/>}
-        </ListItemButton>
-        <Collapse in={usersCollapse} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton
-              onClick={() => goTo('/usuarios')}
+            <ListItemIcon
               sx={{
-                minHeight: 48,
-                justifyContent: 'initial',
-                px: 2.5,
-                pl: '2rem'
+                minWidth: 0,
+                mr: 3,
+                justifyContent: 'center',
               }}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: 3,
-                  justifyContent: 'center',
-                }}
-              >
-                <ArrowRightAltIcon style={{ color: 'white' }} />
-              </ListItemIcon>
-              <ListItemText primary='Lista de Usuarios' />
-            </ListItemButton>
-              <ListItemButton
-                onClick={() => goTo('/usuarios/registrar')}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: 'initial',
-                  px: 2.5,
-                  pl: '2rem'
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: 3,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ArrowRightAltIcon style={{ color: 'white' }} />
-                </ListItemIcon>
-                <ListItemText primary='Registrar Usuarios' />
-              </ListItemButton>
-          </List>
-        </Collapse>
-        <ListItemButton
-          onClick={() => setProductsCollapse(!productsCollapse)}
-          sx={{
-            minHeight: 48,
-            justifyContent: 'initial',
-            px: 2.5,
-          }}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: 'center',
-            }}
-          >
-            <InventoryIcon style={{ color: 'white' }} />
-          </ListItemIcon>
-          <ListItemText primary='Productos' />
-          {productsCollapse ? <ExpandLess/> : <ExpandMore/>}
-        </ListItemButton>
-        <Collapse in={productsCollapse} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-              <ListItemButton
-                onClick={() => goTo('/productos')}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: 'initial',
-                  px: 2.5,
-                  pl: '2rem'
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: 3,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ArrowRightAltIcon  style={{ color: 'white' }} />
-                </ListItemIcon>
-                <ListItemText primary='Lista de Productos' />
-              </ListItemButton>
-              <ListItemButton
-                onClick={() => goTo('/productos/registrar')}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: 'initial',
-                  px: 2.5,
-                  pl: '2rem'
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: 3,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ArrowRightAltIcon style={{ color: 'white' }} />
-                </ListItemIcon>
-                <ListItemText primary='Registrar Producto' />
-              </ListItemButton>
-          </List>
-        </Collapse>
-        <ListItemButton
-          onClick={() => setSalesCollapse(!salesCollapse)}
-          sx={{
-            minHeight: 48,
-            justifyContent: 'initial',
-            px: 2.5,
-          }}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: 'center',
-            }}
-          >
-            <PaidIcon style={{ color: 'white' }} />
-          </ListItemIcon>
-          <ListItemText primary='Ventas' />
-          {salesCollapse ? <ExpandLess/> : <ExpandMore/>}
-        </ListItemButton>
-        <Collapse in={salesCollapse} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-              <ListItemButton
-                onClick={() => goTo('/ventas')}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: 'initial',
-                  px: 2.5,
-                  pl: '2rem'
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: 3,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ArrowRightAltIcon  style={{ color: 'white' }} />
-                </ListItemIcon>
-                <ListItemText primary='Resumen de ventas' />
-              </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
+              {route.icon}
+            </ListItemIcon>
+            <ListItemText primary={route.title}/>
+          </ListItemButton>
+        ))
+      }
       <Divider/>
-    </>
+    </List>
   )
 }

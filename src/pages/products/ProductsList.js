@@ -7,6 +7,7 @@ import {
   Paper, TextField, Autocomplete, InputAdornment, Pagination
 } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddIcon from '@mui/icons-material/Add';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import EditIcon from '@mui/icons-material/Edit';
 import {mockProductTable} from '../../utils/mockData';
@@ -30,71 +31,51 @@ export default function ProductsList() {
     setPage(newPage);
   };
 
-  const changeUserFilterData = (index, value ) => {
+  const changeUserFilterData = (index, value) => {
     setUserFilters(prevState => ({...prevState, [index]: value}))
   }
 
   return (
     <Paper elevation={2} sx={{width: '100%', p: 2}}>
       <Box p={2}>
-        <Typography variant='h5' sx={{ mb: 2 }}>Lista de usuarios</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <TextField
-              value={userFilters.searchTerm}
-              onChange={(e) =>
-                changeUserFilterData("searchTerm", e.target.value)
-              }
-              sx={{ flex: 0.8 }}
-              fullWidth
-              id="search-textfield"
-              size="small"
-              placeholder="Buscar"
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PersonSearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button sx={{ mt: 2 }} variant='contained'>Buscar</Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Autocomplete
-              value={userFilters.userType}
-              onChange={(e) => changeUserFilterData("userType", e.target.value)}
-              sx={{ flex: 0.8 }}
-              id="pais-autocomplete"
-              options={["Admin", "..."]}
-              renderInput={(params) => (
-                <TextField {...params} size="small" placeholder="Tipo de usuario" />
-              )}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <Autocomplete
-              value={userFilters.sucursal}
-              onChange={(e) => changeUserFilterData("sucursal", e.target.value)}
-              sx={{ flex: 0.8 }}
-              id="pais-autocomplete"
-              options={["Prebo 2", "..."]}
-              renderInput={(params) => (
-                <TextField {...params} size="small" placeholder="Sucursal" />
-              )}
-            />
-          </Grid>
-        </Grid>
+        <Box display='flex' alignItems='center' mb={2}>
+          <Typography variant='h2'>Clientes</Typography>
+          <Typography sx={{mx: 2}} color='gray'>24 clientes registrados</Typography>
+        </Box>
+        <Box display='flex' justifyContent='space-between' alignItems='center'>
+          <TextField
+            value={userFilters.searchTerm}
+            onChange={(e) =>
+              changeUserFilterData("searchTerm", e.target.value)
+            }
+            fullWidth
+            id="search-textfield"
+            placeholder="Buscar por nombre o email"
+            variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PersonSearchIcon/>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button variant='contained' color='secondary' sx={{ display: 'flex' }}>
+            <AddIcon />
+            Cliente
+          </Button>
+        </Box>
+
+
       </Box>
-      <Box sx={{ width: '100%' }}>
-        {loading && <LinearProgress />}
+      <Box sx={{width: '100%'}}>
+        {loading && <LinearProgress/>}
       </Box>
       <Grid container spacing={2}>
         {
           data.map(product => (
             <Grid item xs={12} sm={4} md={3} key={product.id}>
-              <Paper elevation={2} sx={{ p: 2 }}>
+              <Paper elevation={2} sx={{p: 2}}>
                 <Box display='flex' justifyContent='center'>
                   <Box
                     component='img'
@@ -114,11 +95,11 @@ export default function ProductsList() {
       {/*{loading && <Box sx={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center' }}><LoadingScreen /></Box>}*/}
       {
         (!data || data.length) < 1 &&
-        <Box sx={{ height: '50vh', display: 'flex', justifyContent: 'center', width: '100%' , alignItems: 'center' }}>
+        <Box sx={{height: '50vh', display: 'flex', justifyContent: 'center', width: '100%', alignItems: 'center'}}>
           <Typography>No hay clientes pendientes...</Typography>
         </Box>
       }
-      <Box sx={{ display: 'flex', justifyContent: 'center', pt: 5 }}>
+      <Box sx={{display: 'flex', justifyContent: 'center', pt: 5}}>
         <Pagination
           boundaryCount={1}
           count={Math.round(length / 25)}

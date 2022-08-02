@@ -238,7 +238,7 @@ export default function Sidebar() {
           <MenuItems/>
         </Drawer>
       </MHidden>
-      <Box component="main" sx={{p: 3, width: '100%', flexGrow: 1}}>
+      <Box component="main" sx={{p: 3, width: '100%', height: '100%', minHeight: '100vh', flexGrow: 1, backgroundColor: '#f7f7f8'}}>
         <DrawerHeader/>
         <Outlet/>
       </Box>

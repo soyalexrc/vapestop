@@ -1,6 +1,7 @@
 // material
 import { useTheme } from '@mui/material/styles';
 import { GlobalStyles as GlobalThemeStyles } from '@mui/material';
+import { alpha } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------
 
@@ -18,11 +19,23 @@ export default function GlobalStyles() {
         html: {
           width: '100%',
           height: '100%',
-          WebkitOverflowScrolling: 'touch'
+          WebkitOverflowScrolling: 'touch',
+          '-ms-text-size-adjust': '100%',
+          '-webkit-overflow-scrolling': 'touch'
         },
         body: {
           width: '100%',
-          height: '100%'
+          height: '100%',
+          '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
+            width: 8,
+            height: 6,
+            backgroundColor: theme.palette.divider
+          },
+          '&::-webkit-scrollbar-thumb, & ::-webkit-scrollbar-thumb': {
+            border: 'none',
+            borderRadius: 8,
+            backgroundColor: alpha(theme.palette.grey[600], 0.48)
+          }
         },
         '#root': {
           width: '100%',
@@ -55,6 +68,9 @@ export default function GlobalStyles() {
           '&::placeholder': {
             color: theme.palette.text.disabled
           }
+        },
+        a: {
+          color: theme.palette.primary.main
         },
 
         img: { display: 'block', maxWidth: '100%' },
