@@ -1,3 +1,71 @@
+export const mockTransactions = {
+  length: 300,
+  data: [
+    {
+      id: 1,
+      value: 54,
+      code: '4-27',
+      date: '02/08/22 - 04:52',
+      client: 'Alex Rodriguez',
+      seller: 'Tito Puentes',
+      items: [
+        {
+          id: 222,
+          quantity: 2,
+          item: 'Worlds flavor Giza 60ml Omg',
+          price: 5
+        },
+        {
+          id: 254,
+          quantity: 1,
+          item: 'Uwell  Calibum G2 shading gray',
+          price: 40
+        }
+      ]
+    },
+    {
+      id: 2,
+      value: 54,
+      code: '4-27',
+      date: '02/08/22 - 04:52',
+      obs: 'observaciones de ejemplo',
+      client: 'Alex Rodriguez',
+      seller: 'Tito Puentes',
+      items: [
+        {
+          id: 222,
+          quantity: 2,
+          item: 'Worlds flavor Giza 60ml Omg',
+          price: 5
+        },
+      ]
+    },
+    {
+      id: 3,
+      value: 54,
+      code: '4-27',
+      date: '02/08/22 - 04:52',
+      client: 'Alex Rodriguez',
+      seller: 'Tito Puentes',
+      items: [
+        {
+          id: 222,
+          quantity: 2,
+          item: 'Worlds flavor Giza 60ml Omg',
+          price: 5
+        },
+        {
+          id: 254,
+          quantity: 1,
+          item: 'Uwell  Calibum G2 shading gray',
+          price: 40
+        }
+      ]
+    },
+
+  ]
+}
+
 export const mockUserTable = {
   length: 300,
   data: [
