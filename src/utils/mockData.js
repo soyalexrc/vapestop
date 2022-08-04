@@ -208,6 +208,39 @@ export const mockProductTable = {
   ]
 }
 
+export const mockProducts = {
+  length: 200,
+  data: [
+    {
+      id: 1,
+      name: 'Asmodus drip tip 510',
+      category: 'Accesorios',
+      stock: 20,
+      price: 300,
+      isInCatalogue: false,
+      isStarred: true,
+    },
+    {
+      id: 2,
+      name: 'Asmodus drip tip 510',
+      category: 'Accesorios',
+      stock: 20,
+      price: 300,
+      isInCatalogue: true,
+      isStarred: false,
+    },
+    {
+      id: 3,
+      name: 'Asmodus drip tip 510',
+      category: 'Accesorios',
+      stock: 20,
+      price: 300,
+      isInCatalogue: true,
+      isStarred: false,
+    },
+  ]
+}
+
 export const mockOptions = [
   'Option 1',
   'Option 2',
