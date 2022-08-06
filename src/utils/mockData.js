@@ -248,3 +248,42 @@ export const mockOptions = [
   'Option 4',
 ]
 
+export const suggestedColors = [
+  {
+    id: 1,
+    color: '#fdcb40',
+  },
+  {
+    id: 2,
+    color: '#ff8552',
+  },
+  {
+    id: 3,
+    color: '#ff4e4e',
+  },
+  {
+    id: 4,
+    color: '#ce7da5',
+  },
+  {
+    id: 5,
+    color: '#89bbfe',
+  },
+  {
+    id: 6,
+    color: '#0d3b66',
+  },
+  {
+    id: 7,
+    color: '#444e5e',
+  },
+  {
+    id: 8,
+    color: '#2d2d2a',
+  },
+  {
+    id: 8,
+    color: '#82d173',
+  },
+]
+
