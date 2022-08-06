@@ -122,7 +122,7 @@ export default function Transactions() {
                     <Button onClick={() => setReceiptDrawer(true)}>
                       <Box display='flex' alignItems='center'>
                         <ReceiptIcon fontSize='small' style={{color: 'gray', marginRight: '.5rem'}}/>
-                        <Typography>#{row.code}</Typography>
+                        <Typography variant='caption'>#{row.code}</Typography>
                       </Box>
                     </Button>
                   </TableCell>
@@ -143,6 +143,7 @@ export default function Transactions() {
                   </TableCell>
                   <TableCell>
                     <Button
+                      size='small'
                       color='secondary'
                       aria-controls={open ? 'basic-menu' : undefined}
                       aria-haspopup='true'
@@ -154,7 +155,7 @@ export default function Transactions() {
                   </TableCell>
                   <TableCell>{formatPrice(row.value)}</TableCell>
                   <TableCell></TableCell>
-                  <TableCell>{row.obs && <IconButton><VisibilityIcon/></IconButton>}</TableCell>
+                  <TableCell>{row.obs && <IconButton><VisibilityIcon fontSize='small' /></IconButton>}</TableCell>
                   {/*<TableCell>*/}
                   {/*  <IconButton>*/}
                   {/*    <DeleteForeverIcon />*/}

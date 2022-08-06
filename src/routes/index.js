@@ -66,7 +66,7 @@ const Customers = Loadable(lazy(() => import('../pages/customers/Customers')))
 const CustomerRegister = Loadable(lazy(() => import('../pages/customers/CustomerRegister')))
 const ProductRegister = Loadable(lazy(() => import('../pages/products/ProductRegister')))
 const ProductsList = Loadable(lazy(() => import('../pages/products/ProductsList')))
-const Sales = Loadable(lazy(() => import('../pages/stadistics/SalesDashboard')))
+const Sales = Loadable(lazy(() => import('../pages/stadistics')))
 const Transactions = Loadable(lazy(() => import('../pages/transactions')))
 const Orders = Loadable(lazy(() => import('../pages/orders')))
 const Catalogue = Loadable(lazy(() => import('../pages/catalogue')));

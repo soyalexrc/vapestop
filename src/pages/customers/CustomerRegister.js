@@ -25,7 +25,6 @@ import {useNavigate, useLocation, useParams} from 'react-router-dom';
 import Divider from "@mui/material/Divider";
 import moment from 'moment';
 import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/material.css'
 // import {mockOptions} from '../../utils/mockData';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -185,6 +184,7 @@ export default function CustomerRegister() {
                   inputStyle={{
                     width: '100%'
                   }}
+                  specialLabel='Telefono'
                   country='ve'
                   preferredCountries={['us', 've', 'pe']}
                   value-={userData.phone1}
@@ -196,6 +196,7 @@ export default function CustomerRegister() {
                   inputStyle={{
                     width: '100%'
                   }}
+                  specialLabel='Telefono'
                   country='ve'
                   preferredCountries={['us', 've', 'pe']}
                   value-={userData.phone2}

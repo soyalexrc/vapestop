@@ -15,7 +15,7 @@ const data = [
     title: 'Productos',
     path: '/productos',
     value: 'productos',
-    icon: <AttachMoneyIcon style={{ color: 'white' }} />,
+    icon: <WidgetsIcon style={{ color: 'white' }} />,
     id: 2,
   },
   {
@@ -35,8 +35,8 @@ const data = [
   {
     title: 'Transacciones',
     path: '/transacciones',
-    icon: <WidgetsIcon style={{ color: 'white' }} />,
     value: 'transacciones',
+    icon: <AttachMoneyIcon style={{ color: 'white' }} />,
     id: 3,
   },
   {
@@ -90,7 +90,7 @@ export default function MenuItems() {
               "&:hover": {
                 backgroundColor: 'rgba(255,255,255, 0.1)',
               },
-              px: 2.5,
+              p: 2.5,
             }}
           >
             <ListItemIcon

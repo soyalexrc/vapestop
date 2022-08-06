@@ -33,10 +33,10 @@ export default function MainConfig() {
   return (
     <Box>
       <Typography variant='h2' color='primary'>Configuracion</Typography>
-      <Box display='flex'  my={2}>
+      <Box display='flex' flexWrap='wrap' my={2}>
         {
           ['General', 'Pedidos y Ventas', 'Recibo', 'Pagos', 'Entrega y Retirada', 'Integraciones'].map((chip, index) => (
-            <Chip color={chip === view ? 'secondary' : 'default'} sx={{ mx:1 }} label={chip} onClick={() => setView(chip)}/>
+            <Chip color={chip === view ? 'secondary' : 'default'} sx={{ m:1 }} label={chip} onClick={() => setView(chip)}/>
           ))
         }
       </Box>

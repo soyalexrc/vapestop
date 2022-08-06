@@ -65,7 +65,7 @@ export default function Catalogue() {
       </Paper>
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{p: 2}}>
+          <Paper elevation={3} sx={{p: 3}}>
             <Box display='flex' flexDirection='column' alignItems='center'>
               <Box component='img' src={palette} width={100}/>
               <Typography variant='h6' color='primary' sx={{mt: 2}}>Personalización</Typography>
@@ -157,7 +157,7 @@ export default function Catalogue() {
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Box>
                 <Typography variant='h6'>Publicar Catalogo Online</Typography>
@@ -195,7 +195,7 @@ export default function Catalogue() {
               </Box>
             }
           </Paper>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Typography variant='h6' color='primary'>Datos de la tienda</Typography>
             <Typography>¡Completa los datos de tu tienda y deja tu catálogo profesional!</Typography>
             <Grid container spacing={2} my={1}>
@@ -247,7 +247,7 @@ export default function Catalogue() {
               Completar los datos de la tienda
             </Button>
           </Paper>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Typography variant='h6' color='primary'>Pedidos</Typography>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography fontWeight='bold' color='primary'>Aceptar pedidos online</Typography>
@@ -258,7 +258,7 @@ export default function Catalogue() {
               como <span style={{fontWeight: 'bold'}}>Confirmado</span>. *Pedidos pagados van a llegar como <span style={{ fontWeight: 'bold' }}>Pagado</span>.
             </Typography>
           </Paper>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography variant='h6' color='primary'>Pagos integrados</Typography>
               <IconButton onClick={() => navigate('/configuracion')}>
@@ -285,7 +285,7 @@ export default function Catalogue() {
               </Box>
             </Box>
           </Paper>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography variant='h6' color='primary'>Entrega y retirada</Typography>
               <IconButton onClick={() => navigate('/configuracion')}>
@@ -297,7 +297,7 @@ export default function Catalogue() {
               Configurar entrega y retirada
             </Button>
           </Paper>
-          <Paper elevation={3} sx={{mb: 2, p: 2}}>
+          <Paper elevation={3} sx={{mb: 2, p: 3}}>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography variant='h6' color='primary'>Canales de venta</Typography>
               <IconButton onClick={() => navigate('/configuracion')}>
@@ -306,7 +306,6 @@ export default function Catalogue() {
             </Box>
             <Typography>Integración con Google, Facebook, Instagram y TikTok</Typography>
           </Paper>
-
         </Grid>
       </Grid>
     </Box>

@@ -8,7 +8,7 @@ import {
   MenuItem,
   TableContainer,
   Table, useMediaQuery,
-  TableHead, TableRow, TableCell, TableBody, IconButton, TextField
+  TableHead, TableRow, TableCell, TableBody, IconButton, TextField, Button
 } from "@mui/material";
 import {
   LineChart,
@@ -32,6 +32,7 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
 import Divider from "@mui/material/Divider";
+import {stadisticsData} from '../../utils/mockData';
 
 const dataLine = [
   {
@@ -79,81 +80,6 @@ const dataLine = [
 ];
 
 
-const data = [
-  {
-    name: 'En',
-    ventas: 4000,
-    compras: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Feb',
-    ventas: 3000,
-    compras: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Mar',
-    ventas: 2000,
-    compras: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Abr',
-    ventas: 2780,
-    compras: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'May',
-    ventas: 1890,
-    compras: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Jun',
-    ventas: 2390,
-    compras: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Jul',
-    ventas: 3490,
-    compras: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Ago',
-    ventas: 4000,
-    compras: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Sep',
-    ventas: 3000,
-    compras: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Oct',
-    ventas: 2000,
-    compras: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Nov',
-    ventas: 2780,
-    compras: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Dic',
-    ventas: 1890,
-    compras: 4800,
-    amt: 2181,
-  },
-];
-
 const pieData = [
   {name: 'Producto 1', value: 400, percentage: 25, color: '#0088FE'},
   {name: 'Producto 2', value: 300, percentage: 44, color: '#00C49F'},
@@ -181,13 +107,22 @@ const CustomTooltip = ({payload}) => {
   );
 };
 
-export default function SalesDashboard() {
+export default function Stadistics() {
   const largeScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const [date, setDate] = useState(null);
   const [month, setMonth] = useState('Enero');
   const [year, setYear] = useState('2022');
   const [detailData, setDetailData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentChart, setCurrentChart] = useState(stadisticsData[0]);
+
+  const shortText = (txt) => {
+    if (txt.length > 12) {
+      return txt.substring(0, 13).concat('...');
+    } else {
+      return txt
+    }
+  }
 
   const handleChangeMonth = (event) => {
     setMonth(event.target.value);
@@ -216,7 +151,7 @@ export default function SalesDashboard() {
                       inputFormat="MM/dd/yyyy"
                       value={date}
                       onChange={(e) => setDate(e)}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => <TextField sx={{mx: 1}} {...params} />}
                     />
 
                     <DesktopDatePicker
@@ -224,7 +159,7 @@ export default function SalesDashboard() {
                       inputFormat="MM/dd/yyyy"
                       value={date}
                       onChange={(e) => setDate(e)}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => <TextField sx={{mx: 1}} {...params} />}
                     />
                   </>
                 }
@@ -237,7 +172,7 @@ export default function SalesDashboard() {
                       inputFormat="MM/dd/yyyy"
                       value={date}
                       onChange={(e) => setDate(e)}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => <TextField sx={{mx: 1}} {...params} />}
                     />
 
                     <MobileDatePicker
@@ -245,85 +180,164 @@ export default function SalesDashboard() {
                       inputFormat="MM/dd/yyyy"
                       value={date}
                       onChange={(e) => setDate(e)}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => <TextField sx={{mx: 1}} {...params} />}
                     />
                   </>
                 }
 
               </LocalizationProvider>
             </Box>
+            <Button disabled size='small' sx={{mt: 2}} variant='contained' color='secondary' fullWidth>Filtrar</Button>
           </Paper>
-          <Paper elevation={3} sx={{mt: 2, overflow: 'auto', height: '73vh'}}>
-            <Box display='flex' justifyContent='space-between' p={2}>
-              <Box>
-                <Typography>Facturacion</Typography>
-                <Typography variant='h3' color='secondary'>$63.00</Typography>
-                <Typography variant='caption'>Mejor hora 10h</Typography>
-              </Box>
-              <Box width='100px' height='100px'>
-                <ResponsiveContainer width='100%' height='100%'>
-                  <LineChart width={50} height={100} data={dataLine}>
-                    <Line
-                      type="monotone"
-                      dot={false}
-                      dataKey="pv"
-                      stroke="#8884d8"
-                      strokeWidth={2}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </Box>
-            </Box>
-              <Divider />
-            <Box display='flex' justifyContent='space-between' p={2} sx={{ backgroundColor: '#e3f6f1', borderLeft: '3px solid #2dd1ac'}}>
-              <Box>
-                <Typography>Facturacion</Typography>
-                <Typography variant='h3' color='secondary'>$63.00</Typography>
-                <Typography variant='caption'>Mejor hora 10h</Typography>
-              </Box>
-              <Box width='100px' height='100px'>
-                <ResponsiveContainer width='100%' height='100%'>
-                  <LineChart width={50} height={100} data={dataLine}>
-                    <Line
-                      type="monotone"
-                      dot={false}
-                      dataKey="pv"
-                      stroke="#8884d8"
-                      strokeWidth={2}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </Box>
-            </Box>
-            <Divider />
+          <Paper elevation={3} sx={{mt: 2, overflowY: 'auto', overflowX: 'hidden',  height: '73vh'}}>
+            {
+              stadisticsData.map(dataType => (
+                <Box key={dataType.id} sx={{cursor: 'pointer'}} onClick={() => setCurrentChart(dataType)}>
+                  <Box display='flex' justifyContent='space-between' p={2} sx={{ backgroundColor:  currentChart === dataType && '#e3f6f1', borderLeft:  currentChart === dataType &&'3px solid #2dd1ac'}}>
+                    <Box>
+                      <Typography>{dataType.title}</Typography>
+                      <Typography variant='h3' color='secondary'>{shortText(dataType.preview)}</Typography>
+                      <Typography variant='caption'>Mejor hora 10h</Typography>
+                    </Box>
+                    {/*line graph*/}
+                    {
+                      dataType.type === 'line' &&
+                      <Box width='100px' height='100px'>
+                        <ResponsiveContainer width='100%' height='100%'>
+                          <LineChart width={50} height={100} data={dataType.resumeLine}>
+                            <Line
+                              type="monotone"
+                              dot={false}
+                              dataKey="pv"
+                              stroke="#8884d8"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </Box>
+                    }
+                    {/*  chart graph*/}
+                    {
+                      dataType.type === 'chart' &&
+                      <Box width='100px' height='100px'>
+                        <PieChart width={130} height={130}>
+                          <Pie
+                            data={dataType.resumeLine}
+                            cx='50%'
+                            cy='50%'
+                            innerRadius={25}
+                            outerRadius={35}
+                            fill="#8884d8"
+                            paddingAngle={5}
+                            dataKey="value"
+                          >
+                            {pieData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={entry.color}/>
+                            ))}
+                          </Pie>
+                        </PieChart>
+                      </Box>
+                    }
+                  </Box>
+                  <Divider/>
+                </Box>
+              ))
+            }
+            {/*<Box display='flex' justifyContent='space-between' p={2}>*/}
+            {/*  <Box>*/}
+            {/*    <Typography>Facturacion</Typography>*/}
+            {/*    <Typography variant='h3' color='secondary'>$63.00</Typography>*/}
+            {/*    <Typography variant='caption'>Mejor hora 10h</Typography>*/}
+            {/*  </Box>*/}
+            {/*  <Box width='100px' height='100px'>*/}
+            {/*    <ResponsiveContainer width='100%' height='100%'>*/}
+            {/*      <LineChart width={50} height={100} data={dataLine}>*/}
+            {/*        <Line*/}
+            {/*          type="monotone"*/}
+            {/*          dot={false}*/}
+            {/*          dataKey="pv"*/}
+            {/*          stroke="#8884d8"*/}
+            {/*          strokeWidth={2}*/}
+            {/*        />*/}
+            {/*      </LineChart>*/}
+            {/*    </ResponsiveContainer>*/}
+            {/*  </Box>*/}
+            {/*</Box>*/}
+            {/*  <Divider />*/}
+            {/*<Box display='flex' justifyContent='space-between' p={2} sx={{ backgroundColor: '#e3f6f1', borderLeft: '3px solid #2dd1ac'}}>*/}
+            {/*  <Box>*/}
+            {/*    <Typography>Facturacion</Typography>*/}
+            {/*    <Typography variant='h3' color='secondary'>$63.00</Typography>*/}
+            {/*    <Typography variant='caption'>Mejor hora 10h</Typography>*/}
+            {/*  </Box>*/}
+            {/*  <Box width='100px' height='100px'>*/}
+            {/*    <ResponsiveContainer width='100%' height='100%'>*/}
+            {/*      <LineChart width={50} height={100} data={dataLine}>*/}
+            {/*        <Line*/}
+            {/*          type="monotone"*/}
+            {/*          dot={false}*/}
+            {/*          dataKey="pv"*/}
+            {/*          stroke="#8884d8"*/}
+            {/*          strokeWidth={2}*/}
+            {/*        />*/}
+            {/*      </LineChart>*/}
+            {/*    </ResponsiveContainer>*/}
+            {/*  </Box>*/}
+            {/*</Box>*/}
+            {/*<Divider />*/}
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>
           <Paper elevation={3} sx={{p: 2}}>
             <Box mb={2}>
-              <Typography variant='h6' color='primary'>Facturacion</Typography>
+              <Typography variant='h6' color='primary'>{currentChart.title}</Typography>
             </Box>
             <Box sx={{width: '100%', height: '300px', my: 5}}>
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  width={500}
-                  height={300}
-                  data={data}
-                  margin={{
-                    top: 5,
-                    right: 20,
-                    left: 0,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3"/>
-                  <XAxis dataKey="name"/>
-                  <YAxis/>
-                  <Tooltip/>
-                  <Line type="monotone" dataKey="compras" stroke="#8884d8" activeDot={{r: 8}}/>
-                  <Line type="monotone" dataKey="ventas" stroke="#82ca9d"/>
-                </LineChart>
-              </ResponsiveContainer>
+              {
+                currentChart.type === 'chart' &&
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart width={800} height={400}>
+                    <Pie
+                      data={currentChart.data}
+                      cx='48%'
+                      cy='48%'
+                      innerRadius={90}
+                      outerRadius={120}
+                      fill="#8884d8"
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {pieData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color}/>
+                      ))}
+                    </Pie>
+                    <Tooltip content={<CustomTooltip/>}/>
+                  </PieChart>
+                </ResponsiveContainer>
+              }
+              {
+                currentChart.type === 'line' &&
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    width={500}
+                    height={300}
+                    data={currentChart.data}
+                    margin={{
+                      top: 5,
+                      right: 20,
+                      left: 0,
+                      bottom: 5,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="name"/>
+                    <YAxis/>
+                    <Tooltip/>
+                    {/*<Line type="monotone" dataKey="compras" stroke="#8884d8" activeDot={{r: 8}}/>*/}
+                    <Line type="monotone" dataKey="ventas" stroke="#82ca9d"/>
+                  </LineChart>
+                </ResponsiveContainer>
+              }
             </Box>
 
             <TableContainer>
