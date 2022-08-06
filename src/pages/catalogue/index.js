@@ -55,7 +55,7 @@ export default function Catalogue() {
               </Button>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+          <Grid item xs={12} md={6} sx={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
             <Button fullWidth={!largeScreen} size='small' variant='contained' color='secondary' onClick={openCatalogue}>
               <ExitToAppIcon sx={{mr: 1}}/>
               Ver en otra pestana

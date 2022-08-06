@@ -7,19 +7,7 @@ import ProtectedRoute from './ProtectedRoute'
 
 const Loadable = (Component) => (props) => {
   return (
-    <Suspense
-      fallback={
-        <LoadingScreen
-          sx={{
-            top: 0,
-            left: 0,
-            width: 1,
-            zIndex: 9999,
-            position: "fixed",
-          }}
-        />
-      }
-    >
+    <Suspense fallback={<LoadingScreen/>}>
       <Component {...props} />
     </Suspense>
   );
@@ -58,6 +46,7 @@ export default function Router() {
         {path: 'transacciones', element: <Transactions/>},
         {path: 'pedidos', element: <Orders/>},
         {path: 'catalogo', element: <Catalogue/>},
+        {path: 'configuracion', element: <Configuration/>},
       ]
     },
     {
@@ -81,6 +70,8 @@ const Sales = Loadable(lazy(() => import('../pages/stadistics/SalesDashboard')))
 const Transactions = Loadable(lazy(() => import('../pages/transactions')))
 const Orders = Loadable(lazy(() => import('../pages/orders')))
 const Catalogue = Loadable(lazy(() => import('../pages/catalogue')));
+const Configuration = Loadable(lazy(() => import('../pages/config')));
+
 
 //auth
 const Login = Loadable(lazy(() => import('../pages/auth/Login')))

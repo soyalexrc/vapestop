@@ -2,7 +2,7 @@ import NProgress from 'nprogress';
 import { useEffect, useMemo } from 'react';
 // material
 import { styled} from '@mui/material/styles';
-import {GlobalStyles } from '@mui/material';
+import {Backdrop, CircularProgress, GlobalStyles} from '@mui/material';
 //
 
 // ----------------------------------------------------------------------
@@ -73,7 +73,12 @@ export default function LoadingScreen({ ...other }) {
       <ProgressBar />
 
       <RootStyle {...other}>
-        <div>cargando...</div>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open
+        >
+          <CircularProgress color="secondary" />
+        </Backdrop>
       </RootStyle>
     </>
   );
