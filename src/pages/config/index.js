@@ -1,4 +1,4 @@
-import {Box, Chip, Typography} from "@mui/material";
+import {Box, Chip, Container, Typography} from "@mui/material";
 import { useState } from 'react';
 import GeneralConfig from "./GeneralConfig";
 import OrdersAndSales from "./OrdersAndSales";
@@ -31,7 +31,7 @@ export default function MainConfig() {
   }
 
   return (
-    <Box>
+    <Container>
       <Typography variant='h2' color='primary'>Configuracion</Typography>
       <Box display='flex' flexWrap='wrap' my={2}>
         {
@@ -41,6 +41,6 @@ export default function MainConfig() {
         }
       </Box>
       {renderView(view)}
-    </Box>
+    </Container>
   )
 }

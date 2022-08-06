@@ -1,4 +1,16 @@
-import {Box, Button, Grid, IconButton, Paper, Radio, Switch, TextField, Tooltip, useMediaQuery} from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  Paper,
+  Radio,
+  Switch,
+  TextField,
+  Tooltip,
+  useMediaQuery
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -38,7 +50,7 @@ export default function Catalogue() {
   }
 
   return (
-    <Box>
+    <Container>
       <Paper elevation={3} sx={{p: 3}}>
         <Typography variant='h2' color='primary'>Catalogo Online</Typography>
         <Grid container>
@@ -308,6 +320,6 @@ export default function Catalogue() {
           </Paper>
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   )
 }

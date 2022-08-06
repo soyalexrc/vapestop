@@ -1,7 +1,7 @@
 import {
   Box,
   LinearProgress,
-  Grid, TextField, InputAdornment, IconButton, Paper, useMediaQuery
+  Grid, TextField, InputAdornment, IconButton, Paper, useMediaQuery, Container
 } from "@mui/material";
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -23,7 +23,7 @@ export default function Orders() {
 
 
   return (
-    <>
+    <Container>
       <Paper elevation={4} sx={{width: '100%', p: 2}}>
         <Box p={2}>
           <Typography variant='h2'>Pedidos abiertos</Typography>
@@ -63,6 +63,6 @@ export default function Orders() {
           <Typography variant='h5' color='primary'>Todavia no hay pedidos</Typography>
         </Box>
       </Box>
-    </>
+    </Container>
   )
 }

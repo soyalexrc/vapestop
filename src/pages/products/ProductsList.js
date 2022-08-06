@@ -9,8 +9,22 @@ import {
   TableHead,
   TableBody,
   Grid,
-  Checkbox, List, ListItemButton, ListItemIcon, ListItemText,
-  Pagination, TextField, InputAdornment, IconButton, Paper, useMediaQuery, FormControlLabel, Switch, Drawer, Divider,
+  Checkbox,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Pagination,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Paper,
+  useMediaQuery,
+  FormControlLabel,
+  Switch,
+  Drawer,
+  Divider,
+  Container,
 } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -80,7 +94,7 @@ export default function Customers() {
   }
 
   return (
-    <>
+    <Container>
       <Paper elevation={4} sx={{width: '100%', p: 2}}>
         <Box p={2}>
           <Box display='flex' alignItems='center' mb={2} flexWrap='wrap'>
@@ -412,6 +426,6 @@ export default function Customers() {
         </Box>
       </Drawer>
       <ImportProductsModal open={importDialog} setOpen={setImportDialog} />
-    </>
+    </Container>
   )
 }

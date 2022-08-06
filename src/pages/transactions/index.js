@@ -9,7 +9,7 @@ import {
   TableHead,
   TableBody,
   Grid,
-  Pagination, TextField, InputAdornment, IconButton, Paper, useMediaQuery, Drawer, Divider, Menu, MenuItem
+  Pagination, TextField, InputAdornment, IconButton, Paper, useMediaQuery, Drawer, Divider, Menu, MenuItem, Container
 } from "@mui/material";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import CloseIcon from '@mui/icons-material/Close';
@@ -55,7 +55,7 @@ export default function Transactions() {
 
 
   return (
-    <>
+    <Container>
       <Paper elevation={4} sx={{width: '100%', p: 2}}>
         <Box p={2}>
           <Typography variant='h2'>Historial de ventas</Typography>
@@ -303,6 +303,6 @@ export default function Transactions() {
           </Box>
         </Box>
       </Menu>
-    </>
+    </Container>
   )
 }
